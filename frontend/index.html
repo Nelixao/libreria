@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario de Librería</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Inventario de Librería</h1>
+    </header>
+
+    <main>
+        <section class="buscador">
+            <input type="text" id="busqueda" placeholder="Buscar libros...">
+            <label><input type="checkbox" id="filtro-titulo"> Título</label>
+            <label><input type="checkbox" id="filtro-autor"> Autor</label>
+            <label><input type="checkbox" id="filtro-categoria"> Categoría</label>
+            <button onclick="buscarLibros()">Buscar</button>
+        </section>
+
+        <section class="lista-libros">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Autor</th>
+                        <th>Categoría</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Calificación</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-libros"></tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

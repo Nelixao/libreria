@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Gestión de Libros</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Panel de Administración</h1>
+    </header>
+
+    <main>
+        <section class="formulario">
+            <h2>Agregar Nuevo Libro</h2>
+            <input type="text" id="isbn" placeholder="ISBN">
+            <input type="text" id="titulo" placeholder="Título">
+            <input type="text" id="autor" placeholder="Autor">
+            <input type="text" id="editorial" placeholder="Editorial">
+            <input type="number" id="precio" placeholder="Precio">
+            <input type="number" id="stock" placeholder="Stock">
+            <input type="text" id="categoria" placeholder="Categoría">
+            <button onclick="agregarLibro()">Agregar</button>
+        </section>
+    </main>
+
+    <script>
+        async function agregarLibro() {
+            const libro = {
+                isbn: document.getElementById("isbn").value,
+                titulo: document.getElementById("titulo").value,
+                autor: document.getElementById("autor").value,
+                editorial: document.getElementById("editorial").value,
+                precio: parseFloat(document.getElementById("precio").value),
+                stock: parseInt(document.getElementById("stock").value),
+                categoria: document.getElementById("categoria").value,
+                calificacion: 0
+            };
+
+            try {
+                await fetch("http://localhost:3000/api/libros", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(libro)
+                });
+                alert("Libro agregado con éxito");
+                window.location.href = "index.html";
+            } catch (error) {
+                console.error("Error al agregar libro:", error);
+            }
+        }
+    </script>
+
+</body>
+</html>

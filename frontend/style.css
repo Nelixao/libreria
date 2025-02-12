@@ -1,0 +1,47 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3e5d8; /* Color café claro */
+    color: #5a3e1b; /* Café oscuro */
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+header {
+    background-color: #8d6e63; /* Café medio */
+    padding: 15px;
+    color: white;
+    font-size: 24px;
+}
+
+.buscador {
+    margin: 20px;
+}
+
+button {
+    background-color: #795548;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+table {
+    width: 80%;
+    margin: auto;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #5a3e1b;
+}
+
+th {
+    background-color: #6d4c41;
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #d7ccc8;
+}
