@@ -1,11 +1,10 @@
-const { Sequelize } = require("sequelize");
+const { Sequelize } = require('sequelize'); // Asegúrate de que esta línea esté al inicio del archivo
 
-const db = new Sequelize({
-  dialect: "mysql", // o 'postgres', dependiendo de tu DB
-  host: "localhost",
-  username: "root",
-  password: "ximenaalonso",
-  database: "libreria",
+const sequelize = new Sequelize({
+  host: process.env.DB_HOST || 'localhost',
+  dialect: 'mysql',
+  username: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || "ximenaalonso",
+  database: process.env.DB_NAME || "libreria",
 });
-
-module.exports = db;
+module.exports = sequelize;

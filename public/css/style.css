@@ -1,31 +1,40 @@
+/* Fondo y contenedor principal */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f3e5d8; /* Color café claro */
-    color: #5a3e1b; /* Café oscuro */
+    background-color: #1a1a2e; /* Fondo oscuro */
+    color: #fff; /* Texto blanco */
     margin: 0;
     padding: 0;
     text-align: center;
 }
 
+/* Header */
 header {
-    background-color: #8d6e63; /* Café medio */
+    background-color: #5e2a84; /* Morado oscuro */
     padding: 15px;
     color: white;
     font-size: 24px;
 }
 
+/* Contenedor de búsqueda */
 .buscador {
     margin: 20px;
 }
 
 button {
-    background-color: #795548;
+    background-color: #6a1b9a; /* Morado medio */
     color: white;
     border: none;
     padding: 10px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
+button:hover {
+    background-color: #9c27b0; /* Morado más brillante */
+}
+
+/* Tabla de libros */
 table {
     width: 80%;
     margin: auto;
@@ -34,14 +43,286 @@ table {
 
 th, td {
     padding: 10px;
-    border: 1px solid #5a3e1b;
+    border: 1px solid #5e2a84; /* Morado oscuro */
 }
 
 th {
-    background-color: #6d4c41;
+    background-color: #6a1b9a; /* Morado medio */
     color: white;
 }
 
 tbody tr:nth-child(even) {
-    background-color: #d7ccc8;
+    background-color: #3d3d72; /* Azul oscuro */
 }
+
+/* Diseño del contenedor y animaciones */
+.container::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    backdrop-filter: hue-rotate(90deg);
+    mask: linear-gradient(45deg, #0000, #000);
+    animation: rotaty 5s linear infinite;
+    transform-origin: center;
+}
+
+.container {
+    position: absolute;
+    background-image: radial-gradient(
+      circle at 50% 50%,
+      #0000 0,
+      #0000 2px,
+      hsl(240 100% 20%) 2px /* Azul oscuro */
+    );
+    background-size: 8px 8px;
+    width: 100%;
+    height: 100%;
+}
+
+/* Efectos para los blobs */
+@keyframes thingy {
+    0% {
+      filter: var(--f) hue-rotate(0deg);
+    }
+    to {
+      filter: var(--f) hue-rotate(1turn);
+    }
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    inset: -8em;
+    z-index: -1;
+    --f: blur(7em) brightness(5);
+    --c: #09f; /* Azul claro */
+    animation:
+      blobs-1e28bd3d 150s linear infinite,
+      thingy 5s linear infinite;
+    background-color: #000;
+    background-image: radial-gradient(
+        ellipse 66px 50px at 50% 50%,
+        #9c27b0 0%, /* Morado brillante */
+        transparent 100%
+      ),
+      radial-gradient(ellipse 77px 60px at 50% 50%, #9c27b0 0%, transparent 100%),
+      radial-gradient(ellipse 78px 100px at 50% 50%, #9c27b0 0%, transparent 100%),
+      radial-gradient(ellipse 73px 96px at 50% 50%, #9c27b0 0%, transparent 100%),
+      radial-gradient(ellipse 76px 77px at 50% 50%, #9c27b0 0%, transparent 100%),
+      radial-gradient(ellipse 66px 51px at 50% 50%, #9c27b0 0%, transparent 100%),
+      radial-gradient(ellipse 90px 57px at 50% 50%, #9c27b0 0%, transparent 100%),
+      radial-gradient(ellipse 89px 93px at 50% 50%, #9c27b0 0%, transparent 100%);
+    background-size:
+      726px 576px,
+      1242px 454px,
+      876px 1160px,
+      691px 873px,
+      914px 550px,
+      1159px 340px,
+      1017px 831px,
+      313px 977px;
+}
+
+@keyframes blobs-1e28bd3d {
+    0% {
+      background-position:
+        271px 478px,
+        62px 291px,
+        67px 861px,
+        553px 413px,
+        36px 392px,
+        1077px 226px,
+        400px 799px,
+        7px 264px;
+    }
+
+    to {
+      background-position:
+        -14975px -2978px,
+        31112px 11187px,
+        -20081px 8981px,
+        11609px -3952px,
+        -12760px 12492px,
+        -9354px 2946px,
+        9553px 21574px,
+        946px 9057px;
+    }
+}
+
+/* Botón de plus */
+.plusButton {
+    /* Configuración inicial */
+    --plus_sideLength: 2.5rem;
+    --plus_topRightTriangleSideLength: 0.9rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    width: var(--plus_sideLength);
+    height: var(--plus_sideLength);
+    background-color: #9c27b0; /* Morado brillante */
+    overflow: hidden;
+}
+
+.plusButton::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-width: 0 var(--plus_topRightTriangleSideLength) var(--plus_topRightTriangleSideLength) 0;
+    border-style: solid;
+    border-color: transparent white transparent transparent;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.2s;
+}
+
+.plusButton:hover {
+    cursor: pointer;
+}
+
+.plusButton:hover::before {
+    --plus_topRightTriangleSideLength: calc(var(--plus_sideLength) * 2);
+}
+
+.plusButton:focus-visible::before {
+    --plus_topRightTriangleSideLength: calc(var(--plus_sideLength) * 2);
+}
+
+.plusButton>.plusIcon {
+    fill: white;
+    width: calc(var(--plus_sideLength) * 0.7);
+    height: calc(var(--plus_sideLength) * 0.7);
+    z-index: 1;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.2s;
+}
+
+.plusButton:hover>.plusIcon {
+    fill: #1a1a2e; /* Azul oscuro */
+    transform: rotate(180deg);
+}
+
+.plusButton:focus-visible>.plusIcon {
+    fill: #1a1a2e; /* Azul oscuro */
+    transform: rotate(180deg);
+}
+<style>
+        .input-wrapper input {
+  background-color: #eee;
+  border: none;
+  padding: 1rem;
+  font-size: 1rem;
+  width: 13em;
+  border-radius: 1rem;
+  color: lightcoral;
+  box-shadow: 0 0.4rem #dfd9d9;
+  cursor: pointer;
+}
+
+.input-wrapper input:focus {
+  outline-color: lightcoral;
+}
+/* From Uiverse.io by ayyjayy2 */ 
+.form {
+    --input-focus: #2d8cf0;
+    --font-color: #323232;
+    --font-color-sub: #666;
+    --bg-color: beige;
+    --main-color: black;
+    padding: 20px;
+    background: lightblue;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    box-shadow: 4px 4px var(--main-color);
+  }
+  
+  .title {
+    color: var(--font-color);
+    font-weight: 900;
+    font-size: 20px;
+    margin-bottom: 25px;
+  }
+  
+  .title span {
+    color: var(--font-color-sub);
+    font-weight: 600;
+    font-size: 17px;
+  }
+  
+  .input {
+    width: 250px;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--font-color);
+    padding: 5px 10px;
+    outline: none;
+  }
+  
+  .input::placeholder {
+    color: var(--font-color-sub);
+    opacity: 0.8;
+  }
+  
+  .input:focus {
+    border: 2px solid var(--input-focus);
+  }
+  
+  .login-with {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .button-log {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    color: var(--font-color);
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .icon {
+    width: 24px;
+    height: 24px;
+    fill: var(--main-color);
+  }
+  
+  .button-log:active, .button-confirm:active {
+    box-shadow: 0px 0px var(--main-color);
+    transform: translate(3px, 3px);
+  }
+  
+  .button-confirm {
+    margin: 50px auto 0 auto;
+    width: 120px;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--font-color);
+    cursor: pointer;
+  }
+  

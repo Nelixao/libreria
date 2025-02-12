@@ -1,61 +1,59 @@
-const { Libro } = require("../models/Libro.model"); // Asegúrate de que la ruta esté correcta
+// src/controllers/libros.controller.js
+const Libro = require('../models/Libro.model');
 
-
-// Obtener todos los libros
-const obtenerLibros = async (req, res) => {
+// Crear un nuevo libro
+exports.createLibro = async (req, res) => {
   try {
-    const libros = await Libro.findAll();
-    res.json(libros);
+    const { isbn, titulo, autor, editorial, precio, stock } = req.body;
+    const libro = await Libro.create({ isbn, titulo, autor, editorial, precio, stock });
+    res.status(201).json(libro);
   } catch (error) {
-    res.status(500).json({ message: "Error al obtener libros", error });
+    res.status(500).json({ error: error.message });
   }
 };
 
-// Crear un nuevo libro
-const crearLibro = async (req, res) => {
+// Obtener todos los libros
+exports.getLibros = async (req, res) => {
   try {
-    const { isbn, titulo, autor, editorial, precio, cantidad } = req.body;
-    const nuevoLibro = await Libro.create({ isbn, titulo, autor, editorial, precio, cantidad });
-    res.status(201).json(nuevoLibro);
+    const libros = await Libro.findAll();
+    res.status(200).json(libros);
   } catch (error) {
-    res.status(500).json({ message: "Error al crear libro", error });
+    res.status(500).json({ error: error.message });
   }
 };
 
 // Actualizar un libro
-const actualizarLibro = async (req, res) => {
+exports.updateLibro = async (req, res) => {
   try {
-    const { isbn } = req.params;
-    const { titulo, autor, editorial, precio, cantidad } = req.body;
-    const libro = await Libro.findByPk(isbn);
-    if (!libro) {
-      return res.status(404).json({ message: "Libro no encontrado" });
-    }
-    libro.titulo = titulo || libro.titulo;
-    libro.autor = autor || libro.autor;
-    libro.editorial = editorial || libro.editorial;
-    libro.precio = precio || libro.precio;
-    libro.cantidad = cantidad || libro.cantidad;
+    const { id } = req.params;
+    const { isbn, titulo, autor, editorial, precio, stock } = req.body;
+    const libro = await Libro.findByPk(id);
+    if (!libro) return res.status(404).json({ message: 'Libro no encontrado' });
+
+    libro.isbn = isbn;
+    libro.titulo = titulo;
+    libro.autor = autor;
+    libro.editorial = editorial;
+    libro.precio = precio;
+    libro.stock = stock;
+
     await libro.save();
-    res.json(libro);
+    res.status(200).json(libro);
   } catch (error) {
-    res.status(500).json({ message: "Error al actualizar libro", error });
+    res.status(500).json({ error: error.message });
   }
 };
 
 // Eliminar un libro
-const eliminarLibro = async (req, res) => {
+exports.deleteLibro = async (req, res) => {
   try {
-    const { isbn } = req.params;
-    const libro = await Libro.findByPk(isbn);
-    if (!libro) {
-      return res.status(404).json({ message: "Libro no encontrado" });
-    }
+    const { id } = req.params;
+    const libro = await Libro.findByPk(id);
+    if (!libro) return res.status(404).json({ message: 'Libro no encontrado' });
+
     await libro.destroy();
-    res.status(204).send();
+    res.status(204).json({ message: 'Libro eliminado' });
   } catch (error) {
-    res.status(500).json({ message: "Error al eliminar libro", error });
+    res.status(500).json({ error: error.message });
   }
 };
-
-module.exports = { obtenerLibros, crearLibro, actualizarLibro, eliminarLibro };

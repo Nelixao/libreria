@@ -1,0 +1,101 @@
+/* Estilo para el formulario */
+.form {
+    --input-focus: #9c27b0; /* Morado */
+    --font-color: #ffffff; /* Blanco */
+    --font-color-sub: #d1d1d1; /* Gris claro */
+    --bg-color: #1c1c1c; /* Fondo oscuro */
+    --main-color: #2196f3; /* Azul */
+    padding: 20px;
+    background: linear-gradient(135deg, #9c27b0, #2196f3); /* Morado a Azul */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    box-shadow: 4px 4px 10px var(--main-color);
+}
+
+/* Título */
+.title {
+    color: var(--font-color);
+    font-weight: 900;
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+
+/* Subtítulo */
+.title span {
+    color: var(--font-color-sub);
+    font-weight: 600;
+    font-size: 17px;
+}
+
+/* Estilo de los inputs */
+.input {
+    width: 250px;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px 10px var(--main-color);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--font-color);
+    padding: 5px 10px;
+    outline: none;
+}
+
+.input::placeholder {
+    color: var(--font-color-sub);
+    opacity: 0.8;
+}
+
+.input:focus {
+    border: 2px solid var(--input-focus);
+}
+
+/* Estilos del botón de iniciar sesión */
+.button-confirm {
+    margin: 50px auto 0 auto;
+    width: 120px;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    background-color: var(--main-color);
+    box-shadow: 4px 4px 10px var(--main-color);
+    font-size: 17px;
+    font-weight: 600;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button-confirm:hover {
+    background-color: #f44336; /* Rojo */
+    box-shadow: 4px 4px 10px #f44336;
+}
+
+.button-confirm:active {
+    box-shadow: 0px 0px 4px #f44336;
+    transform: translate(3px, 3px);
+}
+
+/* Estilo de los enlaces */
+a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+a:hover {
+    color: #f44336; /* Rojo */
+}
+
+/* Animación de transición en botones */
+.button-log:active, .button-confirm:active {
+    box-shadow: 0px 0px var(--main-color);
+    transform: translate(3px, 3px);
+}

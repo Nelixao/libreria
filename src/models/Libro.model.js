@@ -1,26 +1,31 @@
-// src/models/libro.model.js
-const { Sequelize, DataTypes } = require("sequelize");
-const sequelize = require("../config/database"); // O la configuración de tu base de datos
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/database'); // Asegúrate de que la conexión a la base de datos sea correcta
 
-const Libro = sequelize.define("Libro", {
+const Libro = sequelize.define('Libro', {
   isbn: {
     type: DataTypes.STRING,
-    primaryKey: true
+    allowNull: false,
+    unique: true
   },
   titulo: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false
   },
   autor: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false
   },
   editorial: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false
   },
   precio: {
-    type: DataTypes.FLOAT
+    type: DataTypes.FLOAT,
+    allowNull: false
   },
-  cantidad: {
-    type: DataTypes.INTEGER
+  stock: {
+    type: DataTypes.INTEGER,
+    allowNull: false
   }
 });
 
