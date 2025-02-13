@@ -1,5 +1,5 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = new Sequelize('mysql://user:password@localhost:3306/database');
+const sequelize = new Sequelize('mysql://user:contraseña@localhost:3306/database');
 
 
 const Categoria = sequelize.define('Categoria', {

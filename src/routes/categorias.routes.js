@@ -1,8 +1,16 @@
-const express = require("express");
+// routes/categorias.routes.js
+const express = require('express');
 const router = express.Router();
-const { obtenerCategorias, crearCategoria } = require("../controllers/categorias.controller");
+const Categoria = require('../models/Categoria.model');
 
-router.get("/", obtenerCategorias);
-router.post("/", crearCategoria);
+// Definir rutas de categorías
+router.get('/', async (req, res) => {
+  try {
+    const categorias = await Categoria.findAll();
+    res.json(categorias);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 module.exports = router;

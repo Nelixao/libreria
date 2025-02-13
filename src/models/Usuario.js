@@ -1,26 +1,39 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
+const bcrypt = require('bcrypt');
+const sequelize = require('../config/database');  // Asegúrate de tener la configuración de tu base de datos.
 
-// Asegúrate de que 'sequelize' esté correctamente instanciado
-const sequelize = new Sequelize({
-  host: process.env.DB_HOST || 'localhost',
-  dialect: 'mysql',
-  username: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD || "ximenaalonso",
-  database: process.env.DB_NAME || "libreria",
-});
+class Usuario extends Model {
+  static async hashPassword(password) {
+    const salt = await bcrypt.genSalt(10);
+    return bcrypt.hash(password, salt);
+  }
 
-const Usuario = sequelize.define('Usuario', {
-  // Definición de los atributos del modelo
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true
-  },
+  static async validatePassword(inputPassword, storedPassword) {
+    return bcrypt.compare(inputPassword, storedPassword);
+  }
+}
+
+Usuario.init({
   nombre: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  // Agrega otros atributos de tu modelo aquí
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true
+  },
+  contraseña: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  rol: {
+    type: DataTypes.STRING,
+    allowNull: false
+  }
+}, {
+  sequelize,
+  modelName: 'Usuario',  // Asegúrate de que el nombre del modelo esté en singular (Usuario).
 });
 
 module.exports = Usuario;
