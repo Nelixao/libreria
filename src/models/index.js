@@ -1,4 +1,5 @@
-const Usuario = require('./Usuario');
+const Usuario = require('./Usuario.model'); // Asegúrate de que el nombre coincide
 const Libro = require('./Libro.model');
+const Categoria = require('./Categoria.model');
 
-module.exports = { Usuario, Libro };
+module.exports = { Usuario, Libro, Categoria };

@@ -1,22 +1,20 @@
-// public/js/script.js
-document.addEventListener('DOMContentLoaded', () => {
-    fetch('http://localhost:3000/libros')
-      .then(response => response.json())
-      .then(libros => {
-        const lista = document.getElementById('libros-lista').querySelector('tbody');
-        libros.forEach(libro => {
-          const row = document.createElement('tr');
-          row.innerHTML = `
-            <td>${libro.isbn}</td>
-            <td>${libro.titulo}</td>
-            <td>${libro.autor}</td>
-            <td>${libro.editorial}</td>
-            <td>${libro.precio}</td>
-            <td>${libro.stock}</td>
-          `;
-          lista.appendChild(row);
-        });
-      })
-      .catch(error => console.error('Error al cargar los libros:', error));
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+
+  const response = await fetch('/usuarios/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
   });
-  
+
+  const data = await response.json();
+  if (response.ok) {
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('rol', data.rol);
+      window.location.href = data.rol === 'admin' ? 'admin.html' : 'libros.html';
+  } else {
+      alert(data.mensaje);
+  }
+});

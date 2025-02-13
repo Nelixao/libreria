@@ -34,5 +34,15 @@
           </div>
     </form>
     <a href="/logout">Cerrar sesión</a>
+    
 </body>
+<script>
+    const userRole = '<%= userRole %>'; // Aquí lo pasas desde el servidor
+
+    if (userRole !== 'admin') {
+        // Redirigir a la página de dashboard si no es admin
+        window.location.href = '/admin';
+    }
+</script>
+
 </html>

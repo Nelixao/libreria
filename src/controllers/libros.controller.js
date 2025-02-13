@@ -1,65 +1,63 @@
-// src/controllers/libros.controller.js
-const { Libro } = require('../models/Libro.model'); // Asegúrate de que el modelo esté correctamente importado
+const Libro = require('../models/Libro.model');
 
-// Crear un nuevo libro
-const createLibro = async (req, res) => {
+// Controlador para obtener todos los libros
+exports.getAllLibros = async (req, res) => {
   try {
-    const { isbn, titulo, autor, editorial, precio, stock } = req.body;
-    const libro = await Libro.create({ isbn, titulo, autor, editorial, precio, stock });
-    res.status(201).json(libro);
+    const libros = await Libro.findAll(); // O la consulta que necesites
+    res.json(libros);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ mensaje: 'Error al obtener los libros', error });
   }
 };
 
-// Obtener todos los libros
-const getLibros = async (req, res) => {
+// Controlador para obtener un libro por ID
+exports.getLibroById = async (req, res) => {
   try {
-    const libros = await Libro.findAll();
-    res.status(200).json(libros);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
-// Actualizar un libro por ID
-const updateLibro = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { isbn, titulo, autor, editorial, precio, stock } = req.body;
-
-    const libro = await Libro.findByPk(id);
-    if (!libro) {
-      return res.status(404).json({ error: 'Libro no encontrado' });
+    const libro = await Libro.findByPk(req.params.id);
+    if (libro) {
+      res.json(libro);
+    } else {
+      res.status(404).json({ mensaje: 'Libro no encontrado' });
     }
-
-    await libro.update({ isbn, titulo, autor, editorial, precio, stock });
-    res.status(200).json(libro);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ mensaje: 'Error al obtener el libro', error });
   }
 };
 
-// Eliminar un libro por ID
-const deleteLibro = async (req, res) => {
+// Controlador para crear un nuevo libro
+exports.createLibro = async (req, res) => {
   try {
-    const { id } = req.params;
+    const nuevoLibro = await Libro.create(req.body);
+    res.status(201).json(nuevoLibro);
+  } catch (error) {
+    res.status(500).json({ mensaje: 'Error al crear el libro', error });
+  }
+};
 
-    const libro = await Libro.findByPk(id);
+// Controlador para actualizar un libro
+exports.updateLibro = async (req, res) => {
+  try {
+    const libro = await Libro.findByPk(req.params.id);
     if (!libro) {
-      return res.status(404).json({ error: 'Libro no encontrado' });
+      return res.status(404).json({ mensaje: 'Libro no encontrado' });
     }
+    await libro.update(req.body);
+    res.json(libro);
+  } catch (error) {
+    res.status(500).json({ mensaje: 'Error al actualizar el libro', error });
+  }
+};
 
+// Controlador para eliminar un libro
+exports.deleteLibro = async (req, res) => {
+  try {
+    const libro = await Libro.findByPk(req.params.id);
+    if (!libro) {
+      return res.status(404).json({ mensaje: 'Libro no encontrado' });
+    }
     await libro.destroy();
-    res.status(200).json({ message: 'Libro eliminado con éxito' });
+    res.status(204).json({ mensaje: 'Libro eliminado' });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ mensaje: 'Error al eliminar el libro', error });
   }
-};
-
-module.exports = {
-  createLibro,
-  getLibros,
-  updateLibro,
-  deleteLibro
 };

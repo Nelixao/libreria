@@ -1,0 +1,62 @@
+body {
+    background: linear-gradient(135deg, #4E342E, #6D4C41); /* Tonos cafés cálidos */
+    color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Título estilizado */
+.titulo-lumina {
+    font-size: 3rem;
+    font-weight: 900; /* Hace que la fuente sea más gruesa */
+    color: #D7CCC8; /* Café claro elegante */
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Contenedor del formulario */
+.login-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Botón con efecto hover */
+.btn-login {
+    background-color: #5D4037; /* Café oscuro */
+    color: white;
+    border: none;
+    font-weight: bold;
+}
+
+.btn-login:hover {
+    background-color: #3E2723;
+}
+
+/* Estilo para los inputs */
+.form-control {
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}
+
+.form-control:focus {
+    background: rgba(255, 255, 255, 0.5);
+    color: black;
+    border: 1px solid #A1887F;
+}
+
+/* Estilo de los labels */
+.form-label {
+    font-weight: bold;
+    color: #D7CCC8;
+}

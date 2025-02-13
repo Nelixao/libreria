@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Librería Lúmina</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="/img/icono.png" type="image/x-icon">
+</head>
+<body>
+     <div class="text-center">  <div class="text-center"></div>
+        <a href="/">
+            <h1>Lúmina </h1>
+        </a></div>
+        </div>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Librería</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/perfil">Mi Perfil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Cerrar sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="container mt-4">
+        <h1 class="text-center">Bienvenido al Dashboard</h1>
+        <p class="text-center">Aquí podrás gestionar tus libros y ver estadísticas de ventas.</p>
+
+        <!-- Tarjetas de estadísticas -->
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-header">Libros Disponibles</div>
+                    <div class="card-body">
+                        <h5 class="card-title">150 libros</h5>
+                        <p class="card-text">Cantidad de libros disponibles en el inventario.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-header">Ventas del Mes</div>
+                    <div class="card-body">
+                        <h5 class="card-title">$2000 USD</h5>
+                        <p class="card-text">Ingresos generados por ventas en el mes.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card text-white bg-warning mb-3">
+                    <div class="card-header">Pedidos Pendientes</div>
+                    <div class="card-body">
+                        <h5 class="card-title">5 Pedidos</h5>
+                        <p class="card-text">Pedidos que aún están en espera de ser procesados.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de acción -->
+        <div class="text-center mt-5">
+            <h2>¿Qué deseas hacer?</h2>
+            <a href="/admin" class="btn btn-primary">Gestionar Libros</a>
+            <a href="/dashboard" class="btn btn-secondary">Ver Estadísticas</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light text-center py-3 mt-5">
+        <p>&copy; 2025 Librería Lúmina | Todos los derechos reservados</p>
+    </footer>
+
+    <!-- Scripts de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

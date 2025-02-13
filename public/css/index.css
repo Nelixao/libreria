@@ -1,0 +1,93 @@
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #4E342E, #6D4C41); /* Fondo en tonos café */
+    color: #FFF;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Encabezado */
+
+/* Título estilizado */
+h1 {
+    font-size: 3rem;
+    font-weight: 900; /* Hace que la fuente sea más gruesa */
+    color: #D7CCC8; /* Café claro elegante */
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+    
+}
+
+/* Barra de navegación */
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav ul li, nav ul a {
+    display: inline;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #FFF;
+    background: #5D4037;
+    border-radius: 8px;
+}
+
+nav ul a:hover {
+    background: #3E2723;
+}
+
+/* Sección del buscador */
+.buscador {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    margin: 20px auto;
+}
+
+.input-group input {
+    border: none;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.input-group .btn {
+    background: #795548;
+    color: #FFF;
+    border: none;
+}
+
+.input-group .btn:hover {
+    background: #3E2723;
+}
+
+/* Tabla de libros */
+.table {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.table thead {
+    background: #5D4037;
+    color: white;
+}
+
+.table tbody tr {
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
