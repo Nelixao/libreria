@@ -1,11 +1,11 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database'); // Asegúrate de que la conexión a la base de datos sea correcta
+const sequelize = require('../config/database'); // Ajusta la ruta si es necesario
 
 const Libro = sequelize.define('Libro', {
-  isbn: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
   },
   titulo: {
     type: DataTypes.STRING,
@@ -15,18 +15,27 @@ const Libro = sequelize.define('Libro', {
     type: DataTypes.STRING,
     allowNull: false
   },
-  editorial: {
+  categoria: {
     type: DataTypes.STRING,
-    allowNull: false
-  },
-  precio: {
-    type: DataTypes.FLOAT,
     allowNull: false
   },
   stock: {
     type: DataTypes.INTEGER,
     allowNull: false
+  },
+  precio: {
+    type: DataTypes.FLOAT,
+    allowNull: true
+  },
+  calificacion: {
+    type: DataTypes.FLOAT,
+    allowNull: true
   }
+});
+
+// Sincronizar el modelo con la base de datos
+Libro.sync({ alter: true }).then(() => {
+  console.log('Tabla de libros sincronizada con la base de datos');
 });
 
 module.exports = Libro;
