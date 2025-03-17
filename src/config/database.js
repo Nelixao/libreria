@@ -1,25 +1,14 @@
 const { Sequelize } = require('sequelize');
-
-// Cargar las variables de entorno desde un archivo .env si estás usando dotenv
 require('dotenv').config();
 
-// Configuración de Sequelize para conectar con la base de datos
-const sequelize = new Sequelize({
-  host: process.env.DB_HOST || 'localhost',
-  dialect: 'mysql',
-  username: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD || "ximenaalonso",  // Cambié 'contraseña' a 'password'
-  database: process.env.DB_NAME || "libreria",
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+    host: process.env.DB_HOST,
+    dialect: 'mysql',
+    logging: false
 });
 
-// Intentar conectar a la base de datos
 sequelize.authenticate()
-  .then(() => {
-    console.log('Conexión a la base de datos establecida con éxito.');
-  })
-  .catch(err => {
-    console.error('No se pudo conectar a la base de datos:', err);
-  });
+    .then(() => console.log('✅ Conexión a la base de datos exitosa'))
+    .catch(error => console.error('❌ Error al conectar la BD:', error));
 
-// Exportar la instancia de Sequelize para ser utilizada en otros archivos
 module.exports = sequelize;
